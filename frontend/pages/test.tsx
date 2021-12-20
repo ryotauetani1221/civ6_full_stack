@@ -4,7 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ data }) => {
     return (
         <div className={styles.container}>
             <Head>
@@ -13,6 +13,7 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
+            {data[0].id}
             <main className={styles.main}>
                 <h1 className={styles.title}>
                     Welcome to <a href="https://nextjs.org">Next.js! test!!!</a>
@@ -21,6 +22,15 @@ const Home: NextPage = () => {
                     {styles.main}
                 </ul>
             </main>
+
+            <div>
+                <h1 className='text-3xl font-bold underline'>POST一覧</h1>
+                <ul>
+                    {data.map((post) => {
+                        return <li key={post.id}>{post.id}：{post.effect}</li>;
+                    })}
+                </ul>
+            </div>
 
             <footer className={styles.footer}>
                 <a
@@ -37,7 +47,7 @@ const Home: NextPage = () => {
         </div>
     )
 }
-// export default Home
+export default Home
 
 export async function getServerSideProps() {
     const res = await fetch(`http://nginx:80/api/areas`)
@@ -55,16 +65,16 @@ export async function getServerSideProps() {
 }
 
 
-export default function index({ data }) {
-    return (
-        <div>
-            <h1>POST一覧</h1>
-            <ul>
-                {data.map((post) => {
-                    return <li key={post.id}>{post.id}：{post.effect}</li>;
-                })}
-            </ul>
-        </div>
-    );
-}
+// export default function index({ data }) {
+//     return (
+//         <div>
+//             <h1>POST一覧</h1>
+//             <ul>
+//                 {data.map((post) => {
+//                     return <li key={post.id}>{post.id}：{post.effect}</li>;
+//                 })}
+//             </ul>
+//         </div>
+//     );
+// }
 
