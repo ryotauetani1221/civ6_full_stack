@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import Footer from '../components/footer'
 
 const Home: NextPage = ({ data }) => {
     return (
@@ -44,6 +45,7 @@ const Home: NextPage = ({ data }) => {
                     </span>
                 </a>
             </footer>
+            <Footer></Footer>
         </div>
     )
 }
